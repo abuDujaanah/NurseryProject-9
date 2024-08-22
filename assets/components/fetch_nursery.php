@@ -1,3 +1,28 @@
+<?php
+// view-nursery.php
+
+// Include your database connection
+include '../config/db_connect.php';
+
+// Get the search query if it exists
+$searchQuery = isset($_GET['query']) ? $_GET['query'] : '';
+
+// Modify the query to fetch search results
+$sql = "SELECT * FROM nursery WHERE nursery_name LIKE ? OR location LIKE ?";
+$stmt = $conn->prepare($sql);
+$searchTerm = '%' . $searchQuery . '%';
+$stmt->bind_param('ss', $searchTerm, $searchTerm);
+$stmt->execute();
+$result = $stmt->get_result();
+
+// Display the search results
+while ($row = $result->fetch_assoc()) {
+    echo "<div>";
+    echo "<h2>" . $row['nursery_name'] . "</h2>";
+    echo "<p>" . $row['location'] . "</p>";
+    echo "</div>";
+}
+?>
 
 
 <div class="container mt-5">
