@@ -12,14 +12,6 @@ include '../assets/components/sidebar.php'
     </div>
 </div>
 
-
-
-
-
-
-
-
-
 <style>
     .nursery-cards-container {
         display: flex;
