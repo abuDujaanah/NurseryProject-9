@@ -152,7 +152,12 @@
                             </div>
                         </li>
 
-                        <li class="">Search</li>
+                        <li class="">
+                            <form method="GET" action="/NurseryProject 9/Pages/search.php">
+                                <input type="text" name="query" placeholder="Search...">
+                                <button type="submit">Search</button>
+                            </form>
+                        </li>
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
