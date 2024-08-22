@@ -151,6 +151,9 @@
                                 </form>
                             </div>
                         </li>
+
+                        <li class="">Search</li>
+
                         <div class="topbar-divider d-none d-sm-block"></div>
 
                         <!-- Nav Item - User Information -->
