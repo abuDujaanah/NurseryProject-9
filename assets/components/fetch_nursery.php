@@ -2,26 +2,19 @@
 // view-nursery.php
 
 // Include your database connection
-include '../config/db_connect.php';
+include '../assets/handler/connection.php';
 
 // Get the search query if it exists
 $searchQuery = isset($_GET['query']) ? $_GET['query'] : '';
 
 // Modify the query to fetch search results
-$sql = "SELECT * FROM nursery WHERE nursery_name LIKE ? OR location LIKE ?";
+$sql = "SELECT * FROM nursery WHERE nursery_name LIKE ? OR staff_id LIKE ? OR img LIKE ? OR address LIKE ? OR contact_information LIKE ? OR nursery_id LIKE ?";
 $stmt = $conn->prepare($sql);
 $searchTerm = '%' . $searchQuery . '%';
-$stmt->bind_param('ss', $searchTerm, $searchTerm);
+$stmt->bind_param('ssssss', $searchTerm, $searchTerm, $searchTerm, $searchTerm, $searchTerm, $searchTerm);
 $stmt->execute();
 $result = $stmt->get_result();
 
-// Display the search results
-while ($row = $result->fetch_assoc()) {
-    echo "<div>";
-    echo "<h2>" . $row['nursery_name'] . "</h2>";
-    echo "<p>" . $row['location'] . "</p>";
-    echo "</div>";
-}
 ?>
 
 
