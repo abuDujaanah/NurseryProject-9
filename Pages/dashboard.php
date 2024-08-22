@@ -30,60 +30,7 @@ $rejected_orders = $result_rejected->fetch_assoc()['rejected_orders'];
 
 // Funga connection
 $conn->close();
-
-
-// dashboard.php Modify the existing code to include the search functionality.
-
-// Include your database connection
-include '../config/db_connect.php';
-
-// Get the search query if it exists
-$searchQuery = isset($_GET['query']) ? $_GET['query'] : '';
-
-// Fetch results from multiple tables
-$nurserySql = "SELECT * FROM nursery WHERE nursery_name LIKE ? OR location LIKE ?";
-$studentSql = "SELECT * FROM students WHERE student_name LIKE ? OR guardian_name LIKE ?";
-
-$searchTerm = '%' . $searchQuery . '%';
-
-// Prepare and execute nursery query
-$stmt = $conn->prepare($nurserySql);
-$stmt->bind_param('ss', $searchTerm, $searchTerm);
-$stmt->execute();
-$nurseryResult = $stmt->get_result();
-
-// Prepare and execute student query
-$stmt = $conn->prepare($studentSql);
-$stmt->bind_param('ss', $searchTerm, $searchTerm);
-$stmt->execute();
-$studentResult = $stmt->get_result();
-
-// Display nursery results
-echo "<h2>Nursery Results</h2>";
-while ($row = $nurseryResult->fetch_assoc()) {
-    echo "<div>";
-    echo "<h3>" . $row['nursery_name'] . "</h3>";
-    echo "<p>" . $row['location'] . "</p>";
-    echo "</div>";
-}
-
-// Display student results
-echo "<h2>Student Results</h2>";
-while ($row = $studentResult->fetch_assoc()) {
-    echo "<div>";
-    echo "<h3>" . $row['student_name'] . "</h3>";
-    echo "<p>Guardian: " . $row['guardian_name'] . "</p>";
-    echo "</div>";
-}
-
-// Handle case where no results found
-if ($nurseryResult->num_rows === 0 && $studentResult->num_rows === 0) {
-    echo "<p>No results found.</p>";
-}
-
-
 ?>
-
 
 
 
