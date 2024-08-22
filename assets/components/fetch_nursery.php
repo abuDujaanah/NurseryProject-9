@@ -11,7 +11,7 @@
 
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                echo '
+                ?>
                 <div class="col-md-4 mb-4">
                     <div class="card shadow text-center" id="nursery">
                         <img src="../assets/uploads/' . htmlspecialchars($row['img']) . '" class="card-img-top" alt="Nursery Image">
@@ -77,7 +77,8 @@
                             </div>
                         </div>
                     </div>
-                </form>';
+                </form>
+                <?php
             }
         } else {
             echo "No nurseries found.";
