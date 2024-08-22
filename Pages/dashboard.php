@@ -30,10 +30,9 @@ $rejected_orders = $result_rejected->fetch_assoc()['rejected_orders'];
 
 // Funga connection
 $conn->close();
-?>
 
-<?php
-// dashboard.php
+
+// dashboard.php Modify the existing code to include the search functionality.
 
 // Include your database connection
 include '../config/db_connect.php';
